@@ -15,17 +15,17 @@ class ImageGenerator:
     def generate_image(self, prompt: str, image_number: int) -> Optional[str]:
         """Generate an image with simplified prompt."""
         try:
-            # Ensure prompt is clean and simple
+            
             simplified_prompt = f"Professional product photography: {prompt}"
-            simplified_prompt = simplified_prompt[:200]  # Limit length
+            simplified_prompt = simplified_prompt[:200]  
             
             payload = {
                 "prompt": simplified_prompt,
                 "num_steps": 15,
                 "width": 1280,
                 "height": 720,
-                "guidance_scale": 7.5,  # Add guidance scale for better results
-                "seed": random.randint(1, 1000000)  # Random seed for variety
+                "guidance_scale": 7.5,  
+                "seed": random.randint(1, 1000000)  
             }
             
             response = requests.post(

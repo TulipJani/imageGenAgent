@@ -53,22 +53,18 @@ Provide your analysis in this format:
         def extract_score(response: str) -> Optional[float]:
             try:
                 logging.info(f"Raw response: {response}")
-                # Look specifically for "Final Score:" pattern first
                 score_pattern = r"Final Score:\s*(\d+(?:\.\d+)?)"
                 match = re.search(score_pattern, response)
                 
-                # Fallback to any number if specific pattern not found
                 if not match:
                     match = re.search(r"\b\d+(\.\d+)?\b", response)
                 
                 if match:
                     score = float(match.group(1) if match.group(1) else match.group(0))
-                    score = min(max(score, 0), 10)  # Ensure within range
-                    
-                    # Add randomness factor for very similar scores (±0.3)
+                    score = min(max(score, 0), 10)  
                     if self.previous_scores and abs(self.previous_scores[-1] - score) < 0.3:
                         score += random.uniform(-0.2, 0.2)
-                        score = min(max(score, 0), 10)  # Ensure still within range
+                        score = min(max(score, 0), 10)  
                     
                     return round(score, 1)
                 return None
@@ -105,15 +101,15 @@ Provide your analysis in this format:
             chat_response = self.client.chat.complete(
                 model="pixtral-12b-2409",
                 messages=messages,
-                temperature=0.7  # Add some randomness to responses
+                temperature=0.7
             )
             
             response_text = chat_response.choices[0].message.content
-            logging.info('Response from Pixtral: %s', response_text)
+            # logging.info('Response from Pixtral: %s', response_text)
             
             score = extract_score(response_text)
             if score is not None:
-                self.previous_scores.append(score)  # Store the score
+                self.previous_scores.append(score) 
                 return score
                 
             logging.error("Failed to extract valid score from response")

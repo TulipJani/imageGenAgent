@@ -8,13 +8,13 @@ class PromptGenerator:
 
     def sanitize_prompt(self, prompt: str) -> str:
         """Sanitize prompt to avoid NSFW detection."""
-        # Remove potentially problematic words
+        
         words_to_remove = ['dark', 'smoke', 'speed', 'chase', 'blazing', 'rebel', 'edgy']
         sanitized = prompt.lower()
         for word in words_to_remove:
             sanitized = sanitized.replace(word.lower(), '')
         
-        # Keep only essential car and scene elements
+        
         if len(sanitized) > 200:
             sanitized = sanitized[:200]
         
@@ -47,7 +47,7 @@ class PromptGenerator:
             
             if 'result' in result and 'response' in result['result']:
                 scenes = [scene.strip() for scene in result['result']['response'].strip().splitlines() if scene.strip()]
-                # Sanitize each prompt
+                
                 sanitized_scenes = [self.sanitize_prompt(scene) for scene in scenes]
                 return sanitized_scenes
             

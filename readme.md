@@ -61,14 +61,14 @@ The MoodboardAgent is a sophisticated tool designed to create detailed concept a
 5. **Run the application**:
 
    ```bash
-   python main.py
+   python app.py
    ```
 
 ---
 
 ## Usage
 
-- **user_input**: The title or theme provided by the user to guide the scene and image generation process.  
-- **max_iterations**: The maximum number of times the system will loop through the generation and refinement process.  
-- **score_threshold**: The minimum quality score an image must achieve to be considered acceptable and move forward.  
-- **max_retries**: The maximum number of attempts allowed to refine and regenerate an image if it doesn't meet the quality threshold.  
+- **user_input**: The title or theme provided by the user to guide the scene and image generation process.
+- **max_iterations**: The maximum number of times the system will loop through the generation and refinement process.
+- **score_threshold**: The minimum quality score an image must achieve to be considered acceptable and move forward.
+- **max_retries**: The maximum number of attempts allowed to refine and regenerate an image if it doesn't meet the quality threshold.

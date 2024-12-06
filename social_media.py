@@ -26,7 +26,7 @@ class SocialMediaManager:
             return False
 
         try:
-            # Hardcoded URL to fetch board information
+            
             url = '''https://in.pinterest.com/resource/BoardsResource/get/?source_url=%2Fthetulipjani%2F_created%2F&data=%7B%22options%22%3A%7B%22page_size%22%3A1%2C%22privacy_filter%22%3A%22all%22%2C%22sort%22%3A%22last_pinned_to%22%2C%22username%22%3A%22thetulipjani%22%7D%2C%22context%22%3A%7B%7D%7D&_=1733307913382'''
             
             response = requests.get(url)
@@ -49,24 +49,24 @@ class SocialMediaManager:
 
             for image_path in image_paths:
                 try:
-                    # Generate metadata for the pin
+                    
                     scene_number = os.path.basename(image_path).split('_')[1].split('.')[0]
                     pin_title = f"AI Generated Concept Art - Scene {scene_number}"
                     pin_description = f"AI generated concept art showcasing unique perspectives and creative compositions. Scene {scene_number}"
                     pin_hashtags = "#AIArt #ConceptArt #DigitalArt #ArtificialIntelligence #CreativeAI #GenerativeArt"
 
-                    # Log upload attempt
+                    
                     logging.info(f"Attempting to upload: {image_path}")
                     logging.info(f"Title: {pin_title}")
                     logging.info(f"Description: {pin_description}")
 
-                    # Ensure image path is absolute
+                    
                     abs_image_path = os.path.abspath(image_path)
                     if not os.path.exists(abs_image_path):
                         logging.error(f"Image file not found: {abs_image_path}")
                         continue
 
-                    # Use upload_pin instead of pin method
+                    
                     response = self.pinterest.upload_pin(
                         board_id=board_id,
                         image_file=abs_image_path,
@@ -80,7 +80,7 @@ class SocialMediaManager:
                     else:
                         logging.error(f"Failed to upload {image_path}.")
 
-                    time.sleep(3)  # Delay between uploads to avoid rate limiting
+                    time.sleep(3)  
 
                 except Exception as e:
                     logging.error(f"Error uploading {image_path}: {e}")
