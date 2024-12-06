@@ -23,45 +23,51 @@ The MoodboardAgent is a sophisticated tool designed to create detailed concept a
 - **API Credentials**:
   - Cloudflare API Token
   - Cloudflare Account ID
+  - Mistral API Key
   - Pinterest Email and Password
 - **Environment Variables Setup**: Properly set up the environment variables for Cloudflare and Pinterest.
-- **Packages**: Install the required packages using:
 
-```bash
-  pip install -r requirements.txt
-```
+---
 
 ## Installation
 
-- Clone the repository:
+1. **Create a virtual environment**:
 
-```bash
-git clone https://your-repository-url.git
-cd your-repository-directory
-```
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
 
-- Install the required packages:
+2. **Install the required packages**:
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- Set up environment variables in a .env file:
+3. **Create a `.env` file** and add the following keys:
 
-```text
-CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
-CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
-PINTEREST_EMAIL=your_pinterest_email
-PINTEREST_PASSWORD=your_pinterest_password
-```
+   ```text
+   CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
+   CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
+   MISTRAL_API_KEY=your_mistral_api_key
+   PINTEREST_EMAIL=your_pinterest_email
+   PINTEREST_PASSWORD=your_pinterest_password
+   ```
+
+4. **Create a JSON file for Pinterest credentials**:
+
+   Create a file at `pinterest_credentials/{email}.json` with your Pinterest credentials.
+
+5. **Run the application**:
+
+   ```bash
+   python main.py
+   ```
+
+---
 
 ## Usage
 
-- Run the application:
-
-```bash
-python main.py
-```
 - **user_input**: The title or theme provided by the user to guide the scene and image generation process.  
 - **max_iterations**: The maximum number of times the system will loop through the generation and refinement process.  
 - **score_threshold**: The minimum quality score an image must achieve to be considered acceptable and move forward.  
